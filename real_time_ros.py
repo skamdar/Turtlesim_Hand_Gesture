@@ -26,37 +26,6 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-
-def readwebcam():
-    cap = cv2.VideoCapture(0)
-    global frames
-
-    while (True):
-        # Capture frame-by-frame
-        ret, frame = cap.read()
-        #print(frame.type())
-        # Our operations on the frame come here
-        #gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
-        print(frame.shape)
-        # Display the resulting frame
-        cv2.namedWindow("frame_webcam")
-        cv2.imshow("frame_webcam", frame)
-        frame = cv2.resize(frame, (256, 256))
-        #frame = np.transpose(frame, (2, 0, 1))
-
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
-
-        lock.acquire()
-        frames = frame
-        lock.release()
-        #time.sleep(0.1)
-    # When everything done, release the capture
-    cap.release()
-
-
-
 class turtlebot():
 
     def __init__(self):
@@ -97,12 +66,9 @@ class turtlebot():
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 
-	#lock = Lock()
 	frames = np.random.rand(256, 256, 3)
-	#t = Thread(target=readwebcam)
-	#t.start()
-	
 	cap = cv2.VideoCapture(0)
+	action = 0
 	
 	while True:
     		#time.sleep(0.1)
@@ -113,34 +79,32 @@ class turtlebot():
         	frame = cv2.resize(frame, (256, 256))
 		if cv2.waitKey(1) & 0xFF == ord('q'):
             		break
-    		#frame = frames
-    		#cv2.imshow('ff', frame)
+    		
     		frame = frame.reshape(1, 256, 256, 3) / 255.0 
-    		#print("prediction...")
     		result = loaded_model.predict(frame)
-    		#print(len(result))
-		action = 0
+		
     		if result[0][0] > result[0][1]:
     			print("thumbs down")
 			action = 1	
     		else:
     			print("thumbs up")
 			action = 0
-        	#Testing our function        
 	
-		if action == 0: #Porportional Controller
-            #linear velocity in the x-axis:
+		if action == 0: 
+            		#move robot with constant angular and linear velocity
+            		#when thumb is up:
+            		
             		vel_msg.linear.x = 10
             		vel_msg.linear.y = 0
             		vel_msg.linear.z = 0
 	    		print(self.pose.x)
 	    		print(self.pose.y)
-            #angular velocity in the z-axis:
+            		#angular velocity in the z-axis:
             		vel_msg.angular.x = 0
             		vel_msg.angular.y = 0
             		vel_msg.angular.z = 4	
 		else:
-        	#Stopping our robot after the movement is over
+        		#stop robot when thumb is down
         		vel_msg.linear.x = 0
         		vel_msg.angular.z =0
         	self.velocity_publisher.publish(vel_msg)
@@ -153,9 +117,7 @@ class turtlebot():
 
 if __name__ == '__main__':
     try:
-        #Testing our function
         x = turtlebot()
         x.move2goal()
 
     except rospy.ROSInterruptException: pass
-
