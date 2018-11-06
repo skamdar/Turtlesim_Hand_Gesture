@@ -5,8 +5,8 @@ You can download the dataset from here:
 https://drive.google.com/open?id=1IHphiOmUaBfPuQVrCzUP40lfvzHLFbpb
 
 Requirements:
-Python 2.7
-Tensorflow
-Keras
-ROS Kinetic
-openCV
+Python 2.7,
+Tensorflow,
+Keras,
+ROS Kinetic,
+openCV.
