@@ -1,5 +1,5 @@
 # Turtlesim_Hand_Gesture
-Control ROS Turtlebot through hand gesture in real time.
+Control ROS Turtlebot through hand gestures in real time.
 
 You can download the dataset from here:
 https://drive.google.com/open?id=1IHphiOmUaBfPuQVrCzUP40lfvzHLFbpb
