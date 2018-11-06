@@ -59,7 +59,7 @@ model.add(Dense(100, activation="relu"))
 # Hidden layer with 10 nodes
 model.add(Dense(10, activation="relu"))
 
-# Output layer with 32 nodes (one for each possible letter/number we predict)
+# Output layer with 2 nodes (one for each possible letter/number we predict)
 model.add(Dense(2, activation="softmax"))
 
 model.compile(optimizer=tf.train.AdamOptimizer(), 
