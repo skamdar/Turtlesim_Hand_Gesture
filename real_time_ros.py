@@ -10,15 +10,12 @@ import tensorflow as tf
 from tensorflow import keras
 import os
 import PIL
-from PIL import Image
 from keras import optimizers
 from keras.models import Sequential
 from keras.layers.convolutional import Conv2D, MaxPooling2D
 from keras.layers.core import Flatten, Dense
 from keras.preprocessing.image import ImageDataGenerator
 from keras.models import model_from_json
-from threading import Thread
-from threading import Lock
 import time
 import cv2
 
@@ -73,7 +70,6 @@ class turtlebot():
 	while True:
     		#time.sleep(0.1)
 		ret, frame = cap.read()
-
 		#cv2.namedWindow("frame_webcam")
         	cv2.imshow("frame_webcam", frame)
         	frame = cv2.resize(frame, (256, 256))
