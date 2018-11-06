@@ -1,0 +1,6 @@
+<launch>
+
+<node pkg = "iro2017003" name="mover" type="real_time_ros.py" output="screen">
+</node>
+
+</launch>
