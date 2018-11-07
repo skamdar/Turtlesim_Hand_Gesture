@@ -16,4 +16,4 @@ Steps:
 2. Attach a webcam.
 3. Put the moveInCircle.launch file in thr launch directory of your ros-kinetic package and real_time_ros.py in the src directory.
 4. Start roscore and Create an instance of tutlesimnode using rosrun turtlesim turtlesimnode
-5. Run the launch file using roslaunch <package-name> moveInCircle.launch
+5. Run the launch file using roslaunch \<package-name\> moveInCircle.launch
