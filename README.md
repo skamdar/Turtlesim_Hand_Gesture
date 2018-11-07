@@ -1,4 +1,4 @@
-# Turtlesim_Hand_Gesture
+# Control ROS Turtle using Hand Gestures in Real Time
 Control ROS Turtlebot through hand gestures in real time. When thumb is up in front of webcam the robot start moving in circle, the robot stops as soon as it sees thumbs down.
 
 You can download the dataset from here:
